@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "sJKLe834GI5F9tTAOdrkbyXdiGhwI5yZPdsHtXlACmQ/qM8R2uXxQPC/g0vy1Y4oJqBkA8dd9OeWXY8Cw9yaow==",
+  "success": true,
+  "projectFilePath": "D:\\GitHub\\C#\\Chatting Room\\Client1\\Client\\Client.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\azrae\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

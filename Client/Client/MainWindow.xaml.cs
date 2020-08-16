@@ -92,19 +92,35 @@ namespace Client
                 IPAddress ip = IPAddress.Parse(hostIP);
                 //socket()
                 client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+
                 //connect()
-                client.Connect(new IPEndPoint(ip, port));
-
-                client_id = System.Guid.NewGuid().ToString();
-
-                msgJsonObj = new MsgJsonFormatObj(client_id, client_username, "");
-                msgJsonObj.IsAlive = true;
-                SendingMsg(msgJsonObj);
-
-
-                Thread receiveThread = new Thread(ReceiveMessage);
-                receiveThread.Start();
-                CloseSettingWindow();
+                try
+                {
+                    client.Connect(new IPEndPoint(ip, port));
+                    if (client.Connected)
+                    {
+                        client_id = System.Guid.NewGuid().ToString();
+                        
+                        msgJsonObj = new MsgJsonFormatObj(client_id, client_username, "");
+                        msgJsonObj.IsAlive = true;
+                        SendingMsg(msgJsonObj);
+                        Thread receiveThread = new Thread(ReceiveMessage);
+                        receiveThread.Start();
+                        CloseSettingWindow();
+                    }
+                }
+                catch (SocketException ex)
+                {
+                    if(ex.SocketErrorCode == SocketError.ConnectionRefused)
+                    {
+                        System.Windows.MessageBox.Show("Room not exists");
+                    }
+                    else
+                    {
+                        System.Windows.MessageBox.Show(ex.Message);
+                    }
+                   
+                }
             }
         }
 
@@ -173,7 +189,10 @@ namespace Client
         {
             string jsonData = JsonConvert.SerializeObject(msg);
             byte[] dataBytes = Encoding.Default.GetBytes(jsonData);
-            client.Send(dataBytes);
+            if (client.Connected)
+            {
+                client.Send(dataBytes);
+            }
         }
 
 

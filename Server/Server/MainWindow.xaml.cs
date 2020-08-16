@@ -215,7 +215,7 @@ namespace Server
                     //accept()
                     Socket client = server.Accept();
                     System.Threading.WaitCallback waitCallback = new WaitCallback(ReceiveMsg);
-
+                    
                     if (clientDict.Count >= limit)
                     {
                         MsgJsonFormatObj jobj = new MsgJsonFormatObj("","", "Chatting room is full\n");
@@ -246,7 +246,7 @@ namespace Server
             byte[] result = new byte[1024];
             //receive message from client
             int receive_num = connection.Receive(result);
-            Thread.Sleep(500);
+            Thread.Sleep(1000);
             string str = Encoding.ASCII.GetString(result, 0, receive_num);
             MsgJsonFormatObj msg = JsonConvert.DeserializeObject<MsgJsonFormatObj>(str);
             
@@ -351,7 +351,15 @@ namespace Server
             foreach (KeyValuePair<string, Socket> item in clientDict)
             {
                 string[] id_name = item.Key.Split(",");
-                memberList.Add(id_name[1]);
+                if (item.Key.Equals(hostMsgBox.Id + "," + hostMsgBox.Username))
+                {
+                    memberList.Add(id_name[1] + "(" + hostIP+":"+port + ")");
+                }
+                else
+                {
+                    memberList.Add(id_name[1] + "(" + item.Value.RemoteEndPoint.ToString() + ")");
+                }
+               
             }
             hostMsgBox.MemberList = memberList;
             RecordsView.Dispatcher.BeginInvoke(

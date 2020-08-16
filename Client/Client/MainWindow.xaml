@@ -5,12 +5,55 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client"
         mc:Ignorable="d"
-        Title="Chatting room (Client)" Height="300" Width="530">
-    <Grid>
-        <TextBox Name="txtbox_msg" HorizontalAlignment="Left" Height="46" Margin="20,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" />
-        <TextBox Name="txtbox_receive_msg" HorizontalAlignment="Center" Height="130" Margin="0,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="470" />
-        
-        <Button Content="Send" HorizontalAlignment="Left" Height="45" Margin="300,20,0,0" VerticalAlignment="Top" Width="84" Click="Send"/>
-        <Button Content="Connect" HorizontalAlignment="Left" Height="45" Margin="400,20,0,0" VerticalAlignment="Top" Width="84" Click="Connect"/>
-    </Grid>
+        Title="Chatting room (Client)"  Height="475" Width="610">
+    <Canvas Background="#FFC5E1F7" Margin="0,0,0,-5">
+        <Grid x:Name="Main" Background="#FFC5E1F7">
+            <Button Name ="btn_join_room" Content="Join Room" HorizontalAlignment="Left" Margin="415,10,0,0" VerticalAlignment="Top" Width="84" Height="45" Click="JoinRoom"/>
+            <Button Name ="btn_leave_room"  Content="Leave Room" HorizontalAlignment="Left" Margin="505,10,0,0" VerticalAlignment="Top" Width="84" Height="45" Click="LeaveRoom" />
+
+            <ListView Name="RecordsView" HorizontalAlignment="Left" Height="368" Margin="415,60,0,0" VerticalAlignment="Top" Width="174" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.View >
+                    <GridView>
+                        <GridView.Columns>
+                            <GridViewColumn Header="Online List"  Width="170"/>
+                        </GridView.Columns>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <TextBox Name="txtbox_receive_msg" HorizontalAlignment="Left" Background="#FFDBECF9" Height="368" Margin="10,10,0,0" TextWrapping="Wrap" IsReadOnly="True" VerticalAlignment="Top" Width="400" FontSize="14" />
+            <TextBox Name="txtbox_sending_msg" HorizontalAlignment="Left" Background="#FFDBECF9" Height="45" Margin="10,383,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="305" FontSize="18" VerticalContentAlignment ="Center"/>
+            <Button Name ="btn_sending" Content="Send" HorizontalAlignment="Left" Margin="320,383,0,0" VerticalAlignment="Top" Width="90" Height="45" Click="Send" />
+        </Grid>
+
+        <Grid x:Name="SettingTable" Background="#FFC5E1F7" Margin="110,116,75,129" Height="200" Width="400" ShowGridLines="True">
+            <Grid.Resources>
+                <Style
+                TargetType="Border">
+                    <Setter
+                    Property="BorderBrush"
+                    Value="Black"></Setter>
+                    <Setter
+                    Property="BorderThickness"
+                    Value="2"></Setter>
+                </Style>
+            </Grid.Resources>
+            <Border Grid.Row="1"   Grid.Column="1"/>
+
+            <Label HorizontalAlignment="Left" Margin="10,18,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.097,1.377" FontSize="20" Content="Name :" Height="35" Width="76"/>
+            <TextBox x:Name="name" HorizontalAlignment="Left" Background="#FFDBECF9" Height="40" Margin="91,16,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" LostFocus="InputBoxOnblur" FontSize="18" VerticalContentAlignment ="Center"/>
+            <Label HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" RenderTransformOrigin="0.097,1.377" FontSize="20" Content="Room IP :" Height="35" Width="123"/>
+            <TextBox x:Name="server_ip" HorizontalAlignment="Left" Background="#FFDBECF9" Height="40" Margin="133,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="258" LostFocus="InputBoxOnblur" FontSize="18" VerticalContentAlignment ="Center"/>
+            <Label HorizontalAlignment="Left" Margin="10,150,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.097,1.377" FontSize="20" Content="Room Port :" Height="35" Width="123"/>
+            <TextBox x:Name="server_port" HorizontalAlignment="Left" Background="#FFDBECF9" Height="40" Margin="133,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="128"  LostFocus="InputBoxOnblur" FontSize="18" VerticalContentAlignment ="Center" MaxLength="5"/>
+
+            <Button Name ="btn_connect_to_room" Content="Connect" HorizontalAlignment="Left" Margin="266,148,0,0" VerticalAlignment="Top" Width="60" Height="40"  Click="Connect"/>
+            <Button Name ="btn_setting_table_cancel" Content="Cancel" HorizontalAlignment="Left" Margin="331,148,0,0" VerticalAlignment="Top" Width="60" Height="40" Click="CancelSetting"/>
+        </Grid>
+    </Canvas>
 </Window>

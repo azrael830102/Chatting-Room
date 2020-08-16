@@ -6,14 +6,14 @@
         xmlns:local="clr-namespace:Server"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        Title="Chatting Room" Height="475" Width="610">
-    
+        Title="Chatting Room(Server)" Height="475" Width="610">
+
     <Canvas Background="#FFC5E1F7" Margin="0,0,0,-5">
         <Grid x:Name="Main" Background="#FFC5E1F7">
             <Button Name ="btn_create_room" Content="Create Room" HorizontalAlignment="Left" Margin="415,10,0,0" VerticalAlignment="Top" Width="84" Height="45" Click="CreatRoom"/>
-            <Button Name ="btn_room_shutdown"  Content="Close Room" HorizontalAlignment="Left" Margin="505,10,0,0" VerticalAlignment="Top" Width="84" Height="45"/>
+            <Button Name ="btn_room_shutdown"  Content="Close Room" HorizontalAlignment="Left" Margin="505,10,0,0" VerticalAlignment="Top" Width="84" Height="45" Click="CloseRoom" />
 
-            <ListView Name="RecordsView" HorizontalAlignment="Left" Height="368" Margin="415,60,0,0" VerticalAlignment="Top" Width="174">
+            <ListView Name="RecordsView" HorizontalAlignment="Left" Height="368" Margin="415,60,0,0" VerticalAlignment="Top" Width="174" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -30,7 +30,7 @@
 
             <TextBox Name="txtbox_receive_msg" HorizontalAlignment="Left" Background="#FFDBECF9" Height="368" Margin="10,10,0,0" TextWrapping="Wrap" IsReadOnly="True" VerticalAlignment="Top" Width="400" FontSize="14" />
             <TextBox Name="txtbox_sending_msg" HorizontalAlignment="Left" Background="#FFDBECF9" Height="45" Margin="10,383,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="305" FontSize="18" VerticalContentAlignment ="Center"/>
-            <Button Name ="btn_sending" Content="Send" HorizontalAlignment="Left" Margin="320,383,0,0" VerticalAlignment="Top" Width="90" Height="45" />
+            <Button Name ="btn_sending" Content="Send" HorizontalAlignment="Left" Margin="320,383,0,0" VerticalAlignment="Top" Width="90" Height="45" Click="Send" />
         </Grid>
 
         <Grid x:Name="CreateSettingTable" Background="#FFC5E1F7" Margin="110,116,75,129" Height="200" Width="400" ShowGridLines="True">
@@ -48,14 +48,16 @@
             <Border Grid.Row="1"   Grid.Column="1"/>
 
             <Label HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.097,1.377" FontSize="20" Content="Name :" Height="35" Width="76"/>
-            <TextBox x:Name="server_name" HorizontalAlignment="Left" Background="#FFDBECF9" Height="40" Margin="91,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" LostFocus="InputBoxOnblur" FontSize="18" VerticalContentAlignment ="Center"/>
-            <Label HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.097,1.377" FontSize="20" Content="IP :" Height="35" Width="76"/>
-            <TextBox x:Name="server_ip" HorizontalAlignment="Left" Background="#FFDBECF9" Height="40" Margin="91,16,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" LostFocus="InputBoxOnblur" FontSize="18" VerticalContentAlignment ="Center"/>
-            <Label HorizontalAlignment="Left" Margin="10,140,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.097,1.377" FontSize="20" Content="Port :" Height="35" Width="76"/>
-            <TextBox x:Name="server_port" HorizontalAlignment="Left" Background="#FFDBECF9" Height="40" Margin="91,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170"  LostFocus="InputBoxOnblur" FontSize="18" VerticalContentAlignment ="Center" MaxLength="5"/>
+            <TextBox x:Name="server_name" HorizontalAlignment="Left" Background="#FFDBECF9" Height="40" Margin="91,16,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" LostFocus="InputBoxOnblur" FontSize="18" VerticalContentAlignment ="Center"/>
+            <Label HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.097,1.377" FontSize="20" Content="IP :" Height="35" Width="76"/>
+            <TextBox x:Name="server_ip" HorizontalAlignment="Left" Background="#FFDBECF9" Height="40" Margin="91,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" LostFocus="InputBoxOnblur" FontSize="18" VerticalContentAlignment ="Center"/>
+            <Label HorizontalAlignment="Left" Margin="10,110,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.097,1.377" FontSize="20" Content="Port :" Height="35" Width="76"/>
+            <TextBox x:Name="server_port" HorizontalAlignment="Left" Background="#FFDBECF9" Height="40" Margin="91,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="299"  LostFocus="InputBoxOnblur" FontSize="18" VerticalContentAlignment ="Center" MaxLength="5"/>
 
-            <Button Name ="btn_setting_table_start" Content="Start" HorizontalAlignment="Left" Margin="265,135,0,0" VerticalAlignment="Top" Width="60" Height="40"  Click="SubmitSetting"/>
-            <Button Name ="btn_setting_table_cancel" Content="Cancel" HorizontalAlignment="Left" Margin="330,135,0,0" VerticalAlignment="Top" Width="60" Height="40" Click="CancelSetting"/>
+            <Label HorizontalAlignment="Left" Margin="10,150,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.097,1.377" FontSize="20" Content="Member Limit" Height="35" Width="147"/>
+            <TextBox x:Name="member_limit" HorizontalAlignment="Left" Background="#FFDBECF9" Height="40" Margin="162,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97"  LostFocus="InputBoxOnblur" FontSize="18" VerticalContentAlignment ="Center" MaxLength="5"/>
+            <Button Name ="btn_setting_table_start" Content="Start" HorizontalAlignment="Left" Margin="266,150,0,0" VerticalAlignment="Top" Width="60" Height="40"  Click="SubmitSetting"/>
+            <Button Name ="btn_setting_table_cancel" Content="Cancel" HorizontalAlignment="Left" Margin="331,150,0,0" VerticalAlignment="Top" Width="60" Height="40" Click="CancelSetting"/>
         </Grid>
     </Canvas>
 </Window>

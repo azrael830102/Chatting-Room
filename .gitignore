@@ -25,3 +25,5 @@ Server/Server/obj/Debug/netcoreapp3.1/Server.g.resources
 Server/Server/obj/Debug/netcoreapp3.1/Server.pdb
 Server/Server/obj/Debug/netcoreapp3.1/Server_MarkupCompile.i.cache
 Server/Server/obj/Debug/netcoreapp3.1/Server_MarkupCompile.i.lref
+Client/.vs/Client/DesignTimeBuild/.dtbcache.v2
+Server/.vs/Server/DesignTimeBuild/.dtbcache.v2

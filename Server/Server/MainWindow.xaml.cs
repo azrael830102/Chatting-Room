@@ -333,7 +333,7 @@ namespace Server
 
         private void SendingMsg(Socket connection)
         {
-            string jsonData = JsonConvert.SerializeObject(hostMsgBox);
+            string jsonData = JsonConvert.SerializeObject(hostMsgBox)+"\n";
             byte[] dataBytes = Encoding.Default.GetBytes(jsonData);
             if (connection.Connected) {
                 connection.Send(dataBytes);

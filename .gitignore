@@ -27,3 +27,17 @@ Server/Server/obj/Debug/netcoreapp3.1/Server_MarkupCompile.i.cache
 Server/Server/obj/Debug/netcoreapp3.1/Server_MarkupCompile.i.lref
 Client/.vs/Client/DesignTimeBuild/.dtbcache.v2
 Server/.vs/Server/DesignTimeBuild/.dtbcache.v2
+Client/Client/obj/Client.csproj.nuget.g.props
+Client/Client/obj/Debug/netcoreapp3.1/Client.csproj.CoreCompileInputs.cache
+Client/Client/obj/Debug/netcoreapp3.1/Client.csproj.FileListAbsolute.txt
+Client/Client/obj/Debug/netcoreapp3.1/Client_MarkupCompile.cache
+Client/Client/obj/Debug/netcoreapp3.1/Client_MarkupCompile.lref
+Server/Server/obj/project.assets.json
+Server/Server/obj/project.nuget.cache
+Server/Server/obj/Server.csproj.nuget.dgspec.json
+Server/Server/obj/Server.csproj.nuget.g.props
+Server/Server/obj/Debug/netcoreapp3.1/Server.assets.cache
+Server/Server/obj/Debug/netcoreapp3.1/Server.csproj.CoreCompileInputs.cache
+Server/Server/obj/Debug/netcoreapp3.1/Server.csproj.FileListAbsolute.txt
+Server/Server/obj/Debug/netcoreapp3.1/Server_MarkupCompile.cache
+Server/Server/obj/Debug/netcoreapp3.1/Server_MarkupCompile.lref
